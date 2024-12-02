@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class popupMessage {
+public class screenShot {
     public static void main(String[] args) {
 
         WebDriverManager.chromedriver().setup();
@@ -21,33 +21,17 @@ public class popupMessage {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String baseURL5 ="https://demo.guru99.com/test/delete_customer.php";
-        driver.get(baseURL5);
-        WebElement customerID =driver.findElement(By.name("cusid"));
-        customerID.sendKeys("123");
+        //Ekran görüntüsü aldırma
 
-        WebElement submitButton =driver.findElement(By.name("submit"));
-        submitButton.click();
-
-        Alert alert =driver.switchTo().alert();
-        String alertMassage= driver.switchTo().alert().getText();
-        System.out.println(alertMassage);
-
+        driver.get("https://www.sabah.com.tr/");
+        TakesScreenshot srcShot =((TakesScreenshot)driver);
+        File srcFile=srcShot.getScreenshotAs(OutputType.FILE);
+        File DestFile =new File("C://Users//Anıl//OneDrive//Masaüstü//SS/test.png");
         try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
+            FileUtils.copyFile(srcFile,DestFile);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        alert.accept();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        //Alert alert1 =driver.switchTo().alert();
-        //alert1.accept();
-        alert.accept();
-
         driver.quit();
 
     }
