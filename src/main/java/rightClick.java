@@ -24,6 +24,9 @@ public class rightClick {
         WebElement rightClick=driver.findElement(By.xpath("//*[@id='authentication']/span"));
         Actions actions =new Actions(driver);
         actions.contextClick(rightClick).perform();
+
+
+        
         WebElement copyButton= driver.findElement(By.cssSelector(".context-menu-icon-copy"));
         actions.click(copyButton).perform();
         driver.switchTo().alert().accept();
